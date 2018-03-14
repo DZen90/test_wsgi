@@ -1,3 +1,4 @@
 def app(env, start_response):
     start_response('200 OK', [('Content-Type', 'text/plain')])
-    return '\n'.join(env.get('QUERY_STRING').split('&')) 
+    body = [bytes(i + '\n', 'ascii') for i in env['QUERY_STRING'].split('&')]
+    return body
